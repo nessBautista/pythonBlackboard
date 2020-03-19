@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<head>
+  <script src="https://unpkg.com/@shopify/app-bridge@1.10.1/umd/index.js"></script>
+
+  <script src="https://cdn.shopify.com/s/assets/external/app.js"></script>
+</head>
+
+<body>
+  <script type="text/javascript">
+    var AppBridge = window["app-bridge"];
+
+    const app = AppBridge.createApp({
+      apiKey: "{{ api_key }}",
+      shopOrigin: "{{ session['shop'] }}"
+    });
+
+    AppBridge.actions.TitleBar.create(app, { title: "Shopify Flask App" });
+
+    ShopifyApp.init({
+      apiKey: "b089e5f0d374b1d1de404998536dbd09",
+      shopOrigin: "https://spherecastle.myshopify.com"
+    });
+    ShopifyApp.ready(function() {
+      var shopifyQL = "SHOW count() FROM visits SINCE -2w UNTIL today";
+      var renderData = function(response) {
+        // do amazing things here
+        console.log(response);
+      };
+      var handleError = function(response) {
+        // handle missing API errors here (missing scopes, back shopifyql, etc...)
+        console.log(response);
+      };
+      ShopifyApp.Analytics.fetch({
+        query: shopifyQL,
+        success: renderData,
+        error: handleError
+      });
+    });
+  </script>
+  <h1>Your products:</h1>
+  <ul>
+    {% for product in products %}
+    <li>{{ product.title }}</li>
+    {% endfor %}
+    <h1>{{webhook}}</h1>
+  </ul>
+</body>
