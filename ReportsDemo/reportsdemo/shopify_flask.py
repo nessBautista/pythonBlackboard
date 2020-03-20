@@ -20,6 +20,11 @@ API_VERSION = '2019-10'
 shopify.Session.setup(api_key=API_KEY, secret=API_SECRET)
 
 
+@app.route('/test')
+def test():
+    return 'test'
+
+
 @app.route('/')
 def index():
     print(f'------>api key:{API_KEY}')
@@ -40,7 +45,7 @@ def index():
         wjs = {'webhook':
                {
                    'topic': 'carts/update',
-                   'address': 'https://16e789a1.ngrok.io/cardEvent',
+                   'address': 'https://8b68b600.ngrok.io/cardEvent',
                    'format': 'json'
                }
                }
