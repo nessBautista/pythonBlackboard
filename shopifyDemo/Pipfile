@@ -8,6 +8,12 @@ black = "*"
 
 [packages]
 flask = "*"
+flask-sqlalchemy = "*"
+shopifyapi = "*"
+
+python-dotenv = "*"
+requests = "*"
+
 
 [requires]
 python_version = "3.7"
