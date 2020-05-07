@@ -1,5 +1,6 @@
 from datetime import date
 from django.db import models
+
 # from django.db.models import (
 #     CharField,
 #     DateField,
@@ -15,14 +16,14 @@ class Post(models.Model):
     title = models.CharField(max_length=63)
     slug = models.SlugField(max_length=63)
     text = models.TextField()
-    pub_date = models.DateField()
+    pub_date = models.DateField("Date Published")
     # it has a many to many field with Tags and Startups
-    tags = models.ManyToManyField(Tag)
-    startups = models.ManyToManyField(Startup)
+    tags = models.ManyToManyField(Tag, related_name="blog_posts")
+    startups = models.ManyToManyField(Startup, related_name="blog_posts")
 
     class Meta:
         get_latest_by = "pub_date"
-        #orders by most recent and by title
+        # orders by publication date descending, then by title ascending
         ordering = ["-pub_date", "title"]
         verbose_name = "blog post"
 

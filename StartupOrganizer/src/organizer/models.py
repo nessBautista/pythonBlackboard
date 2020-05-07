@@ -8,8 +8,8 @@ class Tag(models.Model):
     )
 
     class Meta:
-        #orders alphabetically by name
-        ordering = ["name"] 
+        # orders alphabetically by name
+        ordering = ["name"]
 
     def __str__(self):
         return self.name
@@ -29,11 +29,11 @@ class Startup(models.Model):
         return self.name
 
     class Meta:
-        #gets the latest sorted by founded date
+        # gets the latest sorted by founded date
         get_latest_by = "founded_date"
-        
-        #orders alphabetically by name
-        ordering = ["name"] 
+
+        # orders alphabetically by name
+        ordering = ["name"]
 
 
 class NewsLink(models.Model):
@@ -43,13 +43,14 @@ class NewsLink(models.Model):
     link = models.URLField(max_length=255)
     # One to many collection with a startup
     startup = models.ForeignKey(Startup, on_delete=models.CASCADE)
-    
+
     class Meta:
-        #gets the latest sorted by founded date
+        # gets the latest sorted by founded date
         get_latest_by = "pub_date"
-        #minus sign reverses the ordering order
+        # minus sign indicates ordering in descending order
         ordering = ["-pub_date"]
-        #This is specified by tuple(s)        
+        # Sets of field names that, taken together, must be unique.
+        # This is specified by tuple(s)
         unique_together = ("slug", "startup")
 
         verbose_name = "news article"
