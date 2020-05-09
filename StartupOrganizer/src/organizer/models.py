@@ -1,10 +1,11 @@
 from django.db import models
+from django_extensions.db.fields import AutoSlugField
 
 # Create your models here.
 class Tag(models.Model):
     name = models.CharField(max_length=31, unique=True)
-    slug = models.SlugField(
-        max_length=31, unique=True, help_text="A label for URL Config."
+    slug = AutoSlugField(
+        help_text="A label for URL Config", max_length=31, populate_from=["name"],
     )
 
     class Meta:
