@@ -1,20 +1,25 @@
+import json
+
 from django.http import HttpResponse
-from django.views import View  # this import allows me to have a class base view
+from django.shortcuts import get_list_or_404, get_object_or_404
+from django.views import View  # required to use class views
+
+from .models import Tag
 
 
-class HelloWorld(View):
+class TagApiDetail(View):
+    def get(self, request, pk):
+        # request object from database
+        tag = get_object_or_404(Tag, pk=pk)
+        # create a json
+        tag_json = json.dumps(dict(id=tag.pk, name=tag.name, slug=tag.slug,))
+        return HttpResponse(tag_json, content_type="application/json")
+
+
+class TagApiList(View):
     def get(self, request):
-        return HttpResponse("hello World from base class view!")
-
-
-""" Using basic Django View Function
-from django.http import HttpResponse
-from django.views.decorators.http import require_http_methods
-
-@require_http_methods(["GET", "HEAD"])
-def hello_world(request):
-    # return a default status code of 200=ok
-    # content type of text html
-    # character set using the UTF-8 encoding
-    return HttpResponse("Hello World!")
-"""
+        tag_list = get_list_or_404(Tag)
+        tag_json = json.dumps(
+            [dict(id=tag.pk, name=tag.name, slug=tag.slug,) for tag in tag_list]
+        )
+        return HttpResponse(tag_json, content_type="application/json")
