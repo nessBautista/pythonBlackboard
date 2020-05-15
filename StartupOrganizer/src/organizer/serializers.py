@@ -1,9 +1,11 @@
-from rest_framework.serializers import ModelSerializer
+from rest_framework.serializers import ModelSerializer, HyperlinkedIdentityField
 from .models import NewsLink, Startup, Tag
 
 
 class TagSerializer(ModelSerializer):
     """Serialize Tag data"""
+
+    url = HyperlinkedIdentityField(view_name="api-tag-detail",)
 
     class Meta:
         model = Tag
