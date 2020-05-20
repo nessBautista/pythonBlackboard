@@ -5,14 +5,14 @@ from rest_framework.views import APIView
 
 # from rest_framework.renderers import JSONRenderer
 # from django.views import View
-from .serializers import TagSerializer
-from .models import Tag
+from .serializers import StartupSerializer, TagSerializer
+from .models import Startup, Tag
 
 
 class TagApiDetail(APIView):
-    def get(self, request, pk):
+    def get(self, request, slug):
         # request object from database
-        tag = get_object_or_404(Tag, pk=pk)
+        tag = get_object_or_404(Tag, slug=slug)
         s_tag = TagSerializer(tag, context={"request": request},)
         # create a json
         return Response(s_tag.data)
@@ -24,3 +24,19 @@ class TagApiList(APIView):
         s_tag = TagSerializer(tag_list, many=True, context={"request": request},)
 
         return Response(s_tag.data)
+
+
+class StartupAPIDetail(APIView):
+    def get(self, request, slug):
+        startup = get_object_or_404(Startup, slug=slug)
+        s_startup = StartupSerializer(startup, context={"request": request},)
+        return Response(s_startup.data)
+
+
+class StartupAPIList(APIView):
+    def get(self, request):
+        startup_list = get_list_or_404(Startup)  # this is a query not a list
+        s_startup = StartupSerializer(
+            startup_list, many=True, context={"request": request},
+        )
+        return Response(s_startup.data)
