@@ -135,3 +135,6 @@ dmypy.json
 
 #local
 .DS_Store
+
+#Virtual environments
+djangoEnv
