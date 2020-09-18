@@ -35,6 +35,8 @@ services:
     volumes:
       - ./frontend:/client
     tty: true
+    depends_on:
+      - django
 
   jupyter:
     init: true

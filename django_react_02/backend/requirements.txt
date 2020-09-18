@@ -17,3 +17,4 @@ pep8-naming==0.7.0
 pre-commit==1.10.4
 psycopg2-binary
 pytz==2018.5
+ShopifyAPI>=5.1.2

@@ -3,3 +3,7 @@ POSTGRES_PASSWORD=hPjUwljwDc1i
 POSTGRES_USER=webdev21videos2_user
 DATABASE_URL=postgres://webdev21videos2_user:hPjUwljwDc1i@postgres:5432/webdev21videos2
 SECRET_KEY=Pwy6Vip9V9oNoz1mbB5Uu5ltk00aYXhf0DXUq6Fs57lX3xoiON
+
+SHOPIFY_API_KEY= b089e5f0d374b1d1de404998536dbd09
+SHOPIFY_API_SECRET= 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
+DJANGO_SECRET=x0fmqt_4a5urjtm#y=4lk9&lcbekm1%k=%h*=s4!31-*b-7acy
