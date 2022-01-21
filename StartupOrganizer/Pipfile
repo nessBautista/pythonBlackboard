@@ -16,7 +16,7 @@ pytz = "==2018.5"
 Django = "<2.2,>=2.1"
 djangorestframework = "==3.8.2"
 django-extensions = "==2.1.0"
-ipython = "==6.4.0"
+ipython = "==7.16.3"
 
 [requires]
 python_version = "3.7"
